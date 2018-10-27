@@ -14,11 +14,17 @@ public class SoundPlayer {
     static final int BOMB_SPAWN =       3;
     static final int BOMB_EXPLODE =     4;
     static final int RUNE_START =       5;
+    static final int RUNE_CONTINUES =   6;
 
+
+    static final float MAX_PITCH = 2;
+    static final float REDUCTION_RATE = 2;
+
+    private static float runePitch = 1f;
 
     private static SoundPool soundPool;
-    private static int[] soundID = {0,0,0,0,0};
-
+    private static int[] soundID = {0,0,0, 0,0,0};
+    private static int runeSteam = 0;
 
     private static final SoundPlayer ourInstance = new SoundPlayer();
 
@@ -52,10 +58,14 @@ public class SoundPlayer {
             soundID[2] = soundPool.load(context, R.raw.spawn_bomb,       1);
             soundID[3] = soundPool.load(context, R.raw.bomb_explode,     1);
             soundID[4] = soundPool.load(context, R.raw.rune_start,       1);
+            soundID[5] = soundPool.load(context, R.raw.rune_continues,    1);
+
 
         }
 
     }
+
+
 
     public static void unInit() {
         Log.d(TAG, "unInit()");
@@ -67,7 +77,12 @@ public class SoundPlayer {
     }
 
 
-
+    public static void pitchShift(float change) {
+        runePitch += change;
+        if (runePitch > MAX_PITCH) {
+            runePitch = MAX_PITCH;
+        }
+    }
 
 
      public static void playSound(int id) {
@@ -76,7 +91,12 @@ public class SoundPlayer {
 
                 Log.d(TAG, "Playing sound " + id);
 
-                soundPool.play(id, 1, 1, 1, 0, 1f);
+                if (id == soundID[RUNE_CONTINUES-1]) {
+                    runeSteam = soundPool.play(id, 1, 1, 1, -1, runePitch);
+                }
+                else {
+                    soundPool.play(id, 1, 1, 1, 0, 1);
+                }
 
             }
             else {
@@ -87,8 +107,10 @@ public class SoundPlayer {
             Log.w(TAG, "SoundPlayer not initialized!!");
 
         }
+    }
 
-
+    public  static void stopRune() {
+        soundPool.stop(runeSteam);
     }
 
 }

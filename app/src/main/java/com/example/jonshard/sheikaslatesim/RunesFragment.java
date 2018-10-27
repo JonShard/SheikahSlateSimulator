@@ -47,7 +47,7 @@ public class RunesFragment extends Fragment {
 
     boolean roundActivated = false;
     boolean cubeActivated = false;
-
+    boolean runeActivated = false;
 
 
     public RunesFragment() {
@@ -135,36 +135,65 @@ public class RunesFragment extends Fragment {
         btn_magnesis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deselectAll();
-                btn_magnesis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                txt_title.setText(R.string.rune_magnesis_title);
-                txt_subtitle.setText(R.string.rune_magnesis_subtitle);
-                txt_description.setText(R.string.rune_magnesis_description);
-                SoundPlayer.playSound(SoundPlayer.RUNE_START);
+
+                if (!runeActivated) {
+                    runeActivated = true;
+                    deselectAll();
+                    btn_magnesis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                    txt_title.setText(R.string.rune_magnesis_title);
+                    txt_subtitle.setText(R.string.rune_magnesis_subtitle);
+                    txt_description.setText(R.string.rune_magnesis_description);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+                }
+                else {
+                    runeActivated = false;
+                    deselectAll();
+                    SoundPlayer.stopRune();
+                }
             }
         });
 
         btn_stasis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deselectAll();
-                btn_stasis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                txt_title.setText(R.string.rune_stasis_title);
-                txt_subtitle.setText(R.string.rune_stasis_subtitle);
-                txt_description.setText(R.string.rune_stasis_description);
-                SoundPlayer.playSound(SoundPlayer.RUNE_START);
+
+                if (!runeActivated) {
+                    runeActivated = true;
+                    deselectAll();
+                    btn_stasis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                    txt_title.setText(R.string.rune_stasis_title);
+                    txt_subtitle.setText(R.string.rune_stasis_subtitle);
+                    txt_description.setText(R.string.rune_stasis_description);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+                }
+                else {
+                    runeActivated = false;
+                    deselectAll();
+                    SoundPlayer.stopRune();
+                }
             }
         });
 
         btn_cryonis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deselectAll();
-                btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                txt_title.setText(R.string.rune_cryonis_title);
-                txt_subtitle.setText(R.string.rune_cryonis_subtitle);
-                txt_description.setText(R.string.rune_cryonis_description);
-                SoundPlayer.playSound(SoundPlayer.RUNE_START);
+                if (!runeActivated) {
+                    runeActivated = true;
+                    deselectAll();
+                    btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                    txt_title.setText(R.string.rune_cryonis_title);
+                    txt_subtitle.setText(R.string.rune_cryonis_subtitle);
+                    txt_description.setText(R.string.rune_cryonis_description);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
+                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+                }
+                else {
+                    runeActivated = false;
+                    deselectAll();
+                    SoundPlayer.stopRune();
+                }
             }
         });
 
