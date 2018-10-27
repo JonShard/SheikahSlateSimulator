@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">SheikaSlateSim</string>
 
-
+    <string name="image_txt_save">Save in Album?</string>
+    <string name="image_btn_delete">Delete</string>
+    <string name="image_btn_save">Save</string>
 
 
     <string name="rune_bomb_title">Remote Bomb</string>

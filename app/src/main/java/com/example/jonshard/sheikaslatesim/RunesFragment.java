@@ -1,8 +1,16 @@
 package com.example.jonshard.sheikaslatesim;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +18,13 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import java.util.Objects;
+
+import static android.app.Activity.RESULT_OK;
+
 public class RunesFragment extends Fragment {
+
+    static final String TAG = "RunesFragment";
 
     TextView txt_title;
     TextView txt_subtitle;
@@ -156,7 +170,7 @@ public class RunesFragment extends Fragment {
                 txt_subtitle.setText(R.string.rune_camera_subtitle);
                 txt_description.setText(R.string.rune_camera_description);
                 SoundPlayer.playSound(SoundPlayer.START);
-//                Intent start camera for result()
+                dispatchTakePictureIntent();
             }
         });
 
@@ -183,4 +197,57 @@ public class RunesFragment extends Fragment {
         btn_moto_horse.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
 
     }
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
+
+    private void dispatchTakePictureIntent() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.w(TAG, "Missing camera permission, asking now");
+
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+
+            return;
+        }
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(Objects.requireNonNull(getContext()).getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            Intent intent = new Intent(getContext(), ImageActivity.class);
+            intent.putExtra("BitmapImage", imageBitmap);
+            startActivity(intent);
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    dispatchTakePictureIntent();
+                } else {
+                    Log.e(TAG, "Missing camera permission, request was declined.");
+                }
+                return;
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request.
+        }
+    }
 }
+
