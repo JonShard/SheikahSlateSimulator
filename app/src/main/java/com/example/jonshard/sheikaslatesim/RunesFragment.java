@@ -1,9 +1,12 @@
 package com.example.jonshard.sheikaslatesim;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -28,6 +31,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.SENSOR_SERVICE;
 
 public class RunesFragment extends Fragment {
 
@@ -44,6 +48,10 @@ public class RunesFragment extends Fragment {
     ImageButton btn_cryonis;
     ImageButton btn_camera;
     ImageButton btn_moto_horse;
+
+    SensorManager sensorManager;
+    Sensor accelerometer;
+
 
     boolean roundActivated = false;
     boolean cubeActivated = false;
@@ -91,6 +99,11 @@ public class RunesFragment extends Fragment {
         btn_cryonis =       getView().findViewById(R.id.fragment_runes_btn_cryonis);
         btn_camera =        getView().findViewById(R.id.fragment_runes_btn_camera);
         btn_moto_horse =    getView().findViewById(R.id.fragment_runes_btn_moto_horse);
+
+        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(new AccelerationListener(), accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
+
 
         btn_bomb_round.setOnClickListener(new View.OnClickListener() {
             @Override

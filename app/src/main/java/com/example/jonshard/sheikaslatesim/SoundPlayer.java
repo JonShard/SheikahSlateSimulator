@@ -1,6 +1,8 @@
 package com.example.jonshard.sheikaslatesim;
 
 import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
@@ -18,7 +20,7 @@ public class SoundPlayer {
 
 
     static final float MAX_PITCH = 2;
-    static final float REDUCTION_RATE = 2;
+    static final float REDUCTION_RATE = 0.995f;
 
     private static float runePitch = 1f;
 
@@ -59,8 +61,6 @@ public class SoundPlayer {
             soundID[3] = soundPool.load(context, R.raw.bomb_explode,     1);
             soundID[4] = soundPool.load(context, R.raw.rune_start,       1);
             soundID[5] = soundPool.load(context, R.raw.rune_continues,    1);
-
-
         }
 
     }
@@ -76,12 +76,20 @@ public class SoundPlayer {
         }
     }
 
+    public static void update(float sensorModifier) {
 
-    public static void pitchShift(float change) {
-        runePitch += change;
-        if (runePitch > MAX_PITCH) {
-            runePitch = MAX_PITCH;
+        runePitch += sensorModifier;
+
+        if (runePitch > 1) {
+            runePitch *= REDUCTION_RATE;
         }
+        else {
+            runePitch = 1;
+        }
+        soundPool.setRate(runeSteam, runePitch);
+
+        Log.d(TAG, "Playback Rate: " + runePitch);
+
     }
 
 
