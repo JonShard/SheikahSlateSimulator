@@ -1,5 +1,6 @@
 package com.example.jonshard.sheikaslatesim;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -37,6 +38,20 @@ public class ImageActivity extends AppCompatActivity {
         Uri imageUri = Uri.parse(image);
 
         imageView.setImageURI(imageUri);
+
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+        btn_save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_OK);
+
+                finish();            }
+        });
 
     }
 

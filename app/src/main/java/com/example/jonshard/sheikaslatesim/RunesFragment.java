@@ -208,6 +208,7 @@ public class RunesFragment extends Fragment {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_CAMERA = 1;
     static final int REQUSET_EXTERNAL_STORAGE = 2;
+    static final int RESULT_SAVE_IMAGE = 3;
 
     String mCurrentPhotoPath;
 
@@ -274,7 +275,17 @@ public class RunesFragment extends Fragment {
 
             Intent intent = new Intent(getContext(), ImageActivity.class);
             intent.putExtra("imagePath", mCurrentPhotoPath);
-            startActivity(intent);
+            startActivityForResult(intent, RESULT_SAVE_IMAGE);
+        }
+        if (requestCode == RESULT_SAVE_IMAGE) {
+            if (resultCode == RESULT_OK) {
+
+                galleryAddPic();
+                Log.d(TAG, "Saving image to gallery.");
+            }
+            else {
+                Log.d(TAG, "Image was discarded.");
+            }
         }
     }
 
@@ -323,6 +334,14 @@ public class RunesFragment extends Fragment {
         mCurrentPhotoPath = image.getAbsolutePath();
         Log.d(TAG, "Created Image file: "+mCurrentPhotoPath);
         return image;
+    }
+
+    private void galleryAddPic() {      // Adds the picture to the android gallery.
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        getActivity().sendBroadcast(mediaScanIntent);
     }
 }
 
