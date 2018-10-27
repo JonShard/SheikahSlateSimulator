@@ -1,12 +1,8 @@
 package com.example.jonshard.sheikaslatesim;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -20,18 +16,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
-
 import static android.app.Activity.RESULT_OK;
-import static android.content.Context.SENSOR_SERVICE;
 
 public class RunesFragment extends Fragment {
 
@@ -243,7 +234,7 @@ public class RunesFragment extends Fragment {
         btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
         btn_camera.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
         btn_moto_horse.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
-        for (int i = 0; i < states.length; i++) {
+        for (int i = 2; i < states.length; i++) {   // Starts at 2 because the bomb states should not be reset by pressing any of the other runes.
             states[i] = false;
         }
 

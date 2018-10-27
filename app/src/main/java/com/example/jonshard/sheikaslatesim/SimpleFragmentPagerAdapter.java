@@ -11,7 +11,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
-    final int PAGE_COUNT = 3;
+    final int PAGE_COUNT = 2;
     private String tabTitles[] = new String[] {"Runes",  "Map", "BLANK2"};
     private Context context;
 
@@ -31,15 +31,8 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return RunesFragment.newInstance();
         }
-        else if (position == 1) {
-            return MapFragment.newInstance();
-        }
-//        else if (position == 2) {
-//            camera
-//        }
 
-        return RunesFragment.newInstance();
-
+        return MapFragment.newInstance();
 
     }
 

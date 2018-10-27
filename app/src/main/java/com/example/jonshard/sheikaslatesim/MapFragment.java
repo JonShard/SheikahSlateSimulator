@@ -4,21 +4,12 @@ package com.example.jonshard.sheikaslatesim;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
-import com.google.android.gms.maps.OnMapReadyCallback;
-
-import org.xml.sax.Attributes;
-
 
 public class MapFragment extends Fragment {
-
-    CustomZoomableImageView imageView;
 
 
     public MapFragment() {
