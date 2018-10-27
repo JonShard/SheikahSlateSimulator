@@ -1,8 +1,6 @@
 package com.example.jonshard.sheikaslatesim;
 
 import android.content.Context;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.media.AudioAttributes;
 import android.media.SoundPool;
 import android.util.Log;
@@ -19,8 +17,8 @@ public class SoundPlayer {
     static final int RUNE_CONTINUES =   6;
 
 
-    static final float MAX_PITCH = 2;
-    static final float REDUCTION_RATE = 0.995f;
+    static final float MAX_PITCH = 5;
+    static final float REDUCTION_RATE = 0.997f;
 
     private static float runePitch = 1f;
 
@@ -82,6 +80,9 @@ public class SoundPlayer {
 
         if (runePitch > 1) {
             runePitch *= REDUCTION_RATE;
+            if (runePitch > MAX_PITCH) {
+                runePitch = MAX_PITCH;
+            }
         }
         else {
             runePitch = 1;

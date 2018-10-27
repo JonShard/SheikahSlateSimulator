@@ -7,5 +7,11 @@
     <color name="buttonBackground">#0a1125</color>
     <color name="buttonSelectedBackground">#2b7ec6</color>
 
+    <color name="runeMagnesis">#ff2222</color>
+    <color name="runeStasis">#ffd61f</color>
+    <color name="runeCryonis">#97e0ff</color>
+
+
+
 
 </resources>

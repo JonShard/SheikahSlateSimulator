@@ -49,13 +49,14 @@ public class RunesFragment extends Fragment {
     ImageButton btn_camera;
     ImageButton btn_moto_horse;
 
-    SensorManager sensorManager;
-    Sensor accelerometer;
+    private static final int BOMB_ROUND =   0;
+    private static final int BOMB_CUBE =    1;
+    private static final int MAGNESIS =     2;
+    private static final int STASIS =       3;
+    private static final int CRYONIS =      4;
 
 
-    boolean roundActivated = false;
-    boolean cubeActivated = false;
-    boolean runeActivated = false;
+    boolean[] states = {false, false, false, false, false};
 
 
     public RunesFragment() {
@@ -100,69 +101,63 @@ public class RunesFragment extends Fragment {
         btn_camera =        getView().findViewById(R.id.fragment_runes_btn_camera);
         btn_moto_horse =    getView().findViewById(R.id.fragment_runes_btn_moto_horse);
 
-        sensorManager = (SensorManager) getContext().getSystemService(SENSOR_SERVICE);
-        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(new AccelerationListener(), accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
-
 
         btn_bomb_round.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (roundActivated) {
+                if (!states[BOMB_ROUND]) {
                     txt_title.setText(R.string.rune_bomb_title);
                     txt_subtitle.setText(R.string.rune_bomb_subtitle);
                     txt_description.setText(R.string.rune_bomb_description);
-                    SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
-                }
-                else {
+                    SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
                     deselectAll();
                     btn_bomb_round.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                    SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
+                }
+                else {
+                    SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
 
                 }
-                roundActivated = !roundActivated;
+                states[BOMB_ROUND] = !states[BOMB_ROUND];
             }
         });
 
         btn_bomb_cube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (cubeActivated) {
+                if (!states[BOMB_CUBE]) {
                     txt_title.setText(R.string.rune_bomb_title);
                     txt_subtitle.setText(R.string.rune_bomb_subtitle);
                     txt_description.setText(R.string.rune_bomb_description);
-                    SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
-                }
-                else {
+                    SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
                     deselectAll();
                     btn_bomb_cube.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                    SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
                 }
-                cubeActivated = !cubeActivated;
+                else {
+                    SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
+                }
+                states[BOMB_CUBE] = !states[BOMB_CUBE];
             }
-        });                    txt_title.setText(R.string.rune_bomb_title);
-                    txt_subtitle.setText(R.string.rune_bomb_subtitle);
-                    txt_description.setText(R.string.rune_bomb_description);
+        });
 
 
         btn_magnesis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (!runeActivated) {
-                    runeActivated = true;
+                if (!states[MAGNESIS]) {
                     deselectAll();
+                    states[MAGNESIS] = true;
                     btn_magnesis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                     txt_title.setText(R.string.rune_magnesis_title);
                     txt_subtitle.setText(R.string.rune_magnesis_subtitle);
                     txt_description.setText(R.string.rune_magnesis_description);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+
                 }
                 else {
-                    runeActivated = false;
-                    deselectAll();
-                    SoundPlayer.stopRune();
+                    states[MAGNESIS] = false;
+                    Intent intent = new Intent(getContext(), RuneActivity.class);
+                    intent.putExtra("runeID", RuneActivity.MAGNESIS);
+                    startActivity(intent);
                 }
             }
         });
@@ -171,20 +166,20 @@ public class RunesFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (!runeActivated) {
-                    runeActivated = true;
+                if (!states[STASIS]) {
                     deselectAll();
+                    states[STASIS] = true;
                     btn_stasis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                     txt_title.setText(R.string.rune_stasis_title);
                     txt_subtitle.setText(R.string.rune_stasis_subtitle);
-                    txt_description.setText(R.string.rune_stasis_description);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+
+
                 }
                 else {
-                    runeActivated = false;
-                    deselectAll();
-                    SoundPlayer.stopRune();
+                    states[STASIS] = false;
+                    Intent intent = new Intent(getContext(), RuneActivity.class);
+                    intent.putExtra("runeID", RuneActivity.STASIS);
+                    startActivity(intent);
                 }
             }
         });
@@ -192,20 +187,19 @@ public class RunesFragment extends Fragment {
         btn_cryonis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!runeActivated) {
-                    runeActivated = true;
+                if (!states[CRYONIS]) {
                     deselectAll();
+                    states[CRYONIS] = true;
                     btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                     txt_title.setText(R.string.rune_cryonis_title);
                     txt_subtitle.setText(R.string.rune_cryonis_subtitle);
-                    txt_description.setText(R.string.rune_cryonis_description);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_START);
-                    SoundPlayer.playSound(SoundPlayer.RUNE_CONTINUES);
+
                 }
                 else {
-                    runeActivated = false;
-                    deselectAll();
-                    SoundPlayer.stopRune();
+                    states[CRYONIS] = false;
+                    Intent intent = new Intent(getContext(), RuneActivity.class);
+                    intent.putExtra("runeID", RuneActivity.CRYONIS);
+                    startActivity(intent);
                 }
             }
         });
@@ -244,6 +238,9 @@ public class RunesFragment extends Fragment {
         btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
         btn_camera.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
         btn_moto_horse.setBackgroundColor(getResources().getColor(R.color.buttonBackground));
+        for (int i = 0; i < states.length; i++) {
+            states[i] = false;
+        }
 
     }
 
