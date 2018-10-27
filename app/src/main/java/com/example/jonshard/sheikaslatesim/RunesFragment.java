@@ -101,6 +101,11 @@ public class RunesFragment extends Fragment {
         btn_camera =        getView().findViewById(R.id.fragment_runes_btn_camera);
         btn_moto_horse =    getView().findViewById(R.id.fragment_runes_btn_moto_horse);
 
+        txt_title.setText(R.string.rune_bomb_title);
+        txt_subtitle.setText(R.string.rune_bomb_subtitle);
+        txt_description.setText(R.string.rune_bomb_description);
+        deselectAll();
+        btn_bomb_round.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
 
         btn_bomb_round.setOnClickListener(new View.OnClickListener() {
             @Override
