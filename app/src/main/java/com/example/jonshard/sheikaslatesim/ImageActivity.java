@@ -2,6 +2,7 @@ package com.example.jonshard.sheikaslatesim;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -31,9 +32,11 @@ public class ImageActivity extends AppCompatActivity {
         imageView =     findViewById(R.id.activity_image_imageView);
 
         Intent intent = getIntent();
-        Bitmap bitmap = intent.getParcelableExtra("BitmapImage");
 
-        imageView.setImageBitmap(bitmap);
+        String image = intent.getStringExtra("imagePath");
+        Uri imageUri = Uri.parse(image);
+
+        imageView.setImageURI(imageUri);
 
     }
 
