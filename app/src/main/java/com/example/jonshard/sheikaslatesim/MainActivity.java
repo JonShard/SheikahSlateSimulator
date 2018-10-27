@@ -1,5 +1,6 @@
 package com.example.jonshard.sheikaslatesim;
 
+import android.media.AudioManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,19 +8,34 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
         // Get the ViewPager and set it's PagerAdapter so that it can display items
         ViewPager viewPager = findViewById(R.id.main_viewPager);
         viewPager.setAdapter(new SimpleFragmentPagerAdapter(getSupportFragmentManager(),
                 MainActivity.this));
 
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        SoundPlayer.init(getApplicationContext());
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        SoundPlayer.unInit();
+    }
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

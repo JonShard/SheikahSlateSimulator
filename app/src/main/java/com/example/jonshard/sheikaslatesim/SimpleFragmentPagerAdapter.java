@@ -12,7 +12,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     final int PAGE_COUNT = 3;
-    private String tabTitles[] = new String[] {"Runes",  "BLANK1", "BLANK2"};
+    private String tabTitles[] = new String[] {"Runes",  "Map", "BLANK2"};
     private Context context;
 
     public SimpleFragmentPagerAdapter(FragmentManager fm, Context context) {
@@ -28,11 +28,14 @@ public class SimpleFragmentPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-//        if (position == 0) {
-//            return FeedFragment.newInstance();
-//        }
-//        else if (position == 1) {
-//            return UsersFragment.newInstance();
+        if (position == 0) {
+            return RunesFragment.newInstance();
+        }
+        else if (position == 1) {
+            return MapFragment.newInstance();
+        }
+//        else if (position == 2) {
+//            camera
 //        }
 
         return RunesFragment.newInstance();

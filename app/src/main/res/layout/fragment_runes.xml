@@ -14,39 +14,39 @@
         android:background="@color/background">
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombC"
+            android:id="@+id/fragment_runes_button_bomb_round"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginEnd="8dp"
             android:background="@mipmap/bomb_round"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_roundbombA"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_bomb_cube"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombA"
+            android:id="@+id/fragment_runes_button_bomb_cube"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginEnd="8dp"
             android:background="@mipmap/bomb_cube"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_roundbombB"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_magnisis"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombB"
+            android:id="@+id/fragment_runes_button_magnisis"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginEnd="8dp"
             android:background="@mipmap/magnisis"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_roundbombA2"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_stasis"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499" />
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombA2"
+            android:id="@+id/fragment_runes_button_stasis"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginStart="8dp"
@@ -59,36 +59,36 @@
             app:layout_constraintVertical_bias="0.499" />
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombB2"
+            android:id="@+id/fragment_runes_button_cryosis"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginStart="8dp"
             android:background="@mipmap/cryosis"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_roundbombA2"
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_stasis"
             app:layout_constraintTop_toTopOf="parent" />
 
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombC2"
+            android:id="@+id/fragment_runes_button_camera"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginStart="8dp"
             android:background="@mipmap/camera"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_roundbombB2"
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_cryosis"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.499" />
 
 
         <Button
-            android:id="@+id/fragment_runes_button_roundbombC3"
+            android:id="@+id/fragment_runes_button_moto_horse"
             android:layout_width="109dp"
             android:layout_height="102dp"
             android:layout_marginStart="8dp"
             android:background="@mipmap/moto_horse"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_roundbombC2"
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_camera"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
