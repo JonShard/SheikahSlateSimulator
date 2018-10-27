@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ImageActivity extends AppCompatActivity {
 
+    TextView txt_save;
     Button btn_delete;
     Button btn_save;
     ImageView imageView;
@@ -20,6 +22,9 @@ public class ImageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_image);
 
         hideSystemUI();
+
+        txt_save =      findViewById(R.id.activity_image_txt_save);
+        txt_save.setText(R.string.image_txt_save);
 
         btn_delete =    findViewById(R.id.activity_image_btn_delete);
         btn_save =      findViewById(R.id.activity_image_btn_save);
