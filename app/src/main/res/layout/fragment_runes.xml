@@ -9,86 +9,161 @@
     <!-- TODO: Update blank fragment layout -->
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/framgent_runes_constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
-
-        <Button
-            android:id="@+id/fragment_runes_button_bomb_round"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
-            android:layout_marginEnd="8dp"
-            android:background="@mipmap/bomb_round"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_bomb_cube"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/fragment_runes_button_bomb_cube"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
-            android:layout_marginEnd="8dp"
-            android:background="@mipmap/bomb_cube"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_magnisis"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:background="@color/background"
+        tools:layout_editor_absoluteX="3dp">
 
 
-        <Button
-            android:id="@+id/fragment_runes_button_magnisis"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
-            android:layout_marginEnd="8dp"
-            android:background="@mipmap/magnisis"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_button_stasis"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
-
-        <Button
-            android:id="@+id/fragment_runes_button_stasis"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
+        <TextView
+            android:id="@+id/fragment_runes_textView_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:background="@mipmap/stasis"
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/allerta"
+            android:text="TextView"
+            android:textColor="@color/colorPrimary"
+            android:textSize="55sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/fragment_runes_btn_stasis"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="@string/rune_camera_title" />
+
+        <TextView
+            android:id="@+id/fragment_runes_textView_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="31dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/allerta"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_runes_btn_stasis"
+            tools:text="@string/rune_camera_subtitle" />
+
+        <TextView
+            android:id="@+id/ffragment_runes_textView_description"
+            android:layout_width="502dp"
+            android:layout_height="136dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/allerta"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_runes_textView_subtitle"
+            tools:text="@string/rune_camera_description" />
+
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_bomb_round"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/bomb_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_btn_bomb_cube"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_bomb_cube"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/bomb_cube"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_btn_magnesis"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_magnesis"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/magnisis"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fragment_runes_btn_stasis"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_stasis"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/stasis"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
-
-        <Button
-            android:id="@+id/fragment_runes_button_cryosis"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
-            android:layout_marginStart="8dp"
-            android:background="@mipmap/cryosis"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_stasis"
             app:layout_constraintTop_toTopOf="parent" />
 
-
-        <Button
-            android:id="@+id/fragment_runes_button_camera"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_cryonis"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
             android:layout_marginStart="8dp"
-            android:background="@mipmap/camera"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/cryosis"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_cryosis"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_btn_stasis"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-        <Button
-            android:id="@+id/fragment_runes_button_moto_horse"
-            android:layout_width="109dp"
-            android:layout_height="102dp"
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_camera"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
             android:layout_marginStart="8dp"
-            android:background="@mipmap/moto_horse"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonSelectedBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/camera"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_runes_button_camera"
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_btn_cryonis"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/fragment_runes_btn_moto_horse"
+            android:layout_width="106dp"
+            android:layout_height="106dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/buttonBackground"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/moto_horse"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/fragment_runes_btn_camera"
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>

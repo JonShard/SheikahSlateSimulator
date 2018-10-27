@@ -1,6 +1,32 @@
 <resources>
     <string name="app_name">SheikaSlateSim</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string name="rune_bomb_title">Remote Bomb</string>
+    <string name="rune_bomb_subtitle"> A bomb that can be detonated remotely.</string>
+    <string name="rune_bomb_description">The force of the blast can be used to damage monsters or destroy objects. There are both round and cube bombs, so use whichever best fits the situation.</string>
+
+    <string name="rune_magnesis_title">Magnesis</string>
+    <string name="rune_magnesis_subtitle">Manipulate metallic objects using magnetism.</string>
+    <string name="rune_magnesis_description">Grab on to metallic objects using the magnetic energy that pours forth from the Magnesis Rune. Objects held in the magnetic snare can be lifted up and moved freely.</string>
+
+    <string name="rune_stasis_title">Stasis</string>
+    <string name="rune_stasis_subtitle">Stop the flow of time for an object.</string>
+    <string name="rune_stasis_description">Stops an object in time while storing its kinetic energy. The stored energy will act upon the object when the flow of time resumes. Making good use of the stored energy can move even the largest of objects.</string>
+
+    <string name="rune_cryonis_title">Cryonis</string>
+    <string name="rune_cryonis_subtitle"> Create a pillar of ice from a water surface.</string>
+    <string name="rune_cryonis_description">Builds ice pillars that are very stable. These pillars can be used as stepping stones or as obstacles. Use Cryonis on an ice pillar to break it.</string>
+
+    <string name="rune_camera_title">Camera</string>
+    <string name="rune_camera_subtitle">Instantly render a visible image into a picture.</string>
+    <string name="rune_camera_description">Pictures created are saved in the album. It has a useful feature that connects to the Hyrule Compendium and automatically registers pictures of new entries.</string>
+
+    <string name="rune_moto_horse_title">Master Cycle Zero</string>
+    <string name="rune_moto_horse_subtitle"> Summon Master Cycle Zero</string>
+    <string name="rune_moto_horse_description">Insert materials into the tank to convert them into fuel. You can freely call upon this item, but summoning it will not work in certain areas.</string>
+
+
 </resources>
