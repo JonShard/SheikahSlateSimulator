@@ -14,6 +14,10 @@
     <color name="runeStasis">#ffd61f</color>
     <color name="runeCryonis">#97e0ff</color>
 
+    <color name="runeMagnesisTint">#86fa5944</color>
+    <color name="runeStasisTint">#7afad953</color>
+    <color name="runeCryonisTint">#84d0edfd</color>
+
 
 
 
