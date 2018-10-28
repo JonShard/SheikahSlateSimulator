@@ -9,7 +9,7 @@ import android.util.Log;
 public class AccelerationListener extends Activity implements SensorEventListener {
 
     static final String TAG = "Acceleromete Listener";
-    static final float SENSITIVIEY = 0.0005f;
+    static final float SENSITIVIEY = 0.0001f;
 
     float[] read;
 

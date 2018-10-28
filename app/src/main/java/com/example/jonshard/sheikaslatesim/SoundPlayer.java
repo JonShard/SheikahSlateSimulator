@@ -9,21 +9,29 @@ public class SoundPlayer {
     static String TAG = "SoundPlayer";
 
 
-    static final int START =            1;
-    static final int CAMERA_CAPTURE =   2;
-    static final int BOMB_SPAWN =       3;
-    static final int BOMB_EXPLODE =     4;
-    static final int RUNE_START =       5;
-    static final int RUNE_CONTINUES =   6;
+    static final int START =                1;
+    static final int CAMERA_CAPTURE =       2;
+    static final int BOMB_SPAWN =           3;
+    static final int BOMB_EXPLODE =         4;
+    static final int RUNE_START =           5;
+    static final int RUNE_CONTINUES =       6;
+    static final int SWORD_SWING =          7;
+    static final int SAVE_IMAGE =           8;
+    static final int PATHWAY_REVIEALED =    9;
+    static final int NEW_ITEM_PICKUP =      10;
+    static final int SELECTION_MADE =       11;
+
+    private static final int RUNE_COUNT =       11;
 
 
-    static final float MAX_PITCH = 5;
-    static final float REDUCTION_RATE = 0.997f;
+
+    static final float MAX_PITCH = 3;
+    static final float REDUCTION_RATE = 0.995f;
 
     private static float runePitch = 1f;
 
     private static SoundPool soundPool;
-    private static int[] soundID = {0,0,0, 0,0,0};
+    private static int[] soundID;
     private static int runeSteam = 0;
 
     private static final SoundPlayer ourInstance = new SoundPlayer();
@@ -33,11 +41,14 @@ public class SoundPlayer {
     }
 
     private SoundPlayer() {
+
     }
 
 
     public static void init(Context context) {
         Log.d(TAG, "init()");
+
+        soundID = new int[RUNE_COUNT];
 
         if (soundPool == null) {
 
@@ -53,12 +64,22 @@ public class SoundPlayer {
 
 
             // Load sounds:
-            soundID[0] = soundPool.load(context, R.raw.start,               1);
+            soundID[0] = soundPool.load(context, R.raw.start,            1);
             soundID[1] = soundPool.load(context, R.raw.camera_capture,   1);
             soundID[2] = soundPool.load(context, R.raw.spawn_bomb,       1);
             soundID[3] = soundPool.load(context, R.raw.bomb_explode,     1);
             soundID[4] = soundPool.load(context, R.raw.rune_start,       1);
-            soundID[5] = soundPool.load(context, R.raw.rune_continues,    1);
+            soundID[5] = soundPool.load(context, R.raw.rune_continues,   1);
+            soundID[6] = soundPool.load(context, R.raw.sword_swing,       1);
+            soundID[7] = soundPool.load(context, R.raw.save_image,       1);
+            soundID[8] = soundPool.load(context, R.raw.pathway_revealed, 1);
+            soundID[9] = soundPool.load(context, R.raw.new_item_pickup,  1);
+            soundID[10] = soundPool.load(context, R.raw.selection_made,  1);
+
+
+
+
+
         }
 
     }
