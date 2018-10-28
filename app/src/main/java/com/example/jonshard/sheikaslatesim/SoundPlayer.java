@@ -21,8 +21,8 @@ public class SoundPlayer {
     static final int NEW_ITEM_PICKUP =      10;
     static final int SELECTION_MADE =       11;
     static final int MOTO_CYCLE_ZERO =      12;
-
-
+    static final int FURY_READY =           13;
+    static final int FURY_USE =             14;
 
 
     static final float MAX_PITCH = 3;
@@ -32,7 +32,7 @@ public class SoundPlayer {
 
     private static SoundPool soundPool;
 //                                  1            6            11
-    private static int[] soundID = {0,0,0,0,0,   0,0,0,0,0,   0,0};
+    private static int[] soundID = {0,0,0,0,0,   0,0,0,0,0,   0,0,0,0};
     private static int runeSteam = 0;
 
     private static final SoundPlayer ourInstance = new SoundPlayer();
@@ -75,6 +75,8 @@ public class SoundPlayer {
             soundID[9] = soundPool.load(context, R.raw.new_item_pickup,  1);
             soundID[10] = soundPool.load(context, R.raw.selection_made,  1);
             soundID[11] = soundPool.load(context, R.raw.moto_cycle,      1);
+            soundID[12] = soundPool.load(context, R.raw.fury_ready,      1);
+            soundID[13] = soundPool.load(context, R.raw.fury_use,        1);
 
 
 
