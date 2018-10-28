@@ -21,7 +21,6 @@ public class SoundPlayer {
     static final int NEW_ITEM_PICKUP =      10;
     static final int SELECTION_MADE =       11;
 
-    private static final int RUNE_COUNT =       11;
 
 
 
@@ -31,7 +30,7 @@ public class SoundPlayer {
     private static float runePitch = 1f;
 
     private static SoundPool soundPool;
-    private static int[] soundID;
+    private static int[] soundID = {0,0,0,0,0,   0,0,0,0,0,   0};
     private static int runeSteam = 0;
 
     private static final SoundPlayer ourInstance = new SoundPlayer();
@@ -47,8 +46,6 @@ public class SoundPlayer {
 
     public static void init(Context context) {
         Log.d(TAG, "init()");
-
-        soundID = new int[RUNE_COUNT];
 
         if (soundPool == null) {
 
