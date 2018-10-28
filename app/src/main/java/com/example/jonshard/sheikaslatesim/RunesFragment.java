@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import java.io.File;
@@ -40,6 +42,13 @@ public class RunesFragment extends Fragment {
     ImageButton btn_camera;
     ImageButton btn_moto_horse;
 
+    Button hiddenA;
+    Button hiddenB;
+    Button hiddenC;
+    Button hiddenD;
+
+    ConstraintLayout layout;
+
     private static final int BOMB_ROUND =   0;
     private static final int BOMB_CUBE =    1;
     private static final int MAGNESIS =     2;
@@ -57,6 +66,7 @@ public class RunesFragment extends Fragment {
     static final int RESULT_SAVE_IMAGE = 3;
 
     String mCurrentPhotoPath;
+    boolean hiddenButtonsVisible = true;
     boolean[] states = {false, false, false, false, false, false, false};
 
 
@@ -104,11 +114,14 @@ public class RunesFragment extends Fragment {
         btn_camera =        getView().findViewById(R.id.fragment_runes_btn_camera);
         btn_moto_horse =    getView().findViewById(R.id.fragment_runes_btn_moto_horse);
 
-        txt_title.setText(R.string.rune_bomb_title);
-        txt_subtitle.setText(R.string.rune_bomb_subtitle);
-        txt_description.setText(R.string.rune_bomb_description);
-        deselectAll();
-        btn_bomb_round.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+        hiddenA = getView().findViewById(R.id.fragment_runes_btn_hiddenA);
+        hiddenB = getView().findViewById(R.id.fragment_runes_btn_hiddenB);
+        hiddenC = getView().findViewById(R.id.fragment_runes_btn_hiddenC);
+        hiddenD = getView().findViewById(R.id.fragment_runes_btn_hiddenD);
+        layout = getView().findViewById(R.id.fragment_runes_constraintLayout);
+
+        select(BOMB_ROUND);
+        toggleHiddenButtons();
 
         btn_bomb_round.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,6 +229,54 @@ public class RunesFragment extends Fragment {
                 }
             }
         });
+
+        hiddenA.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundPlayer.playSound(SoundPlayer.SWORD_SWING);
+            }
+        });
+        hiddenB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundPlayer.playSound(SoundPlayer.FURY_USE);
+            }
+        });
+        hiddenC.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundPlayer.playSound(SoundPlayer.PATHWAY_REVIEALED);
+            }
+        });
+        hiddenD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SoundPlayer.playSound(SoundPlayer.FURY_READY);
+            }
+        });
+        layout.setOnLongClickListener(new View.OnLongClickListener(){
+            @Override
+            public boolean onLongClick(View view) {
+                toggleHiddenButtons();
+                return false;
+            }
+        });
+    }
+
+    private void toggleHiddenButtons() {
+        if (hiddenButtonsVisible){
+            hiddenA.setBackgroundColor(getResources().getColor(R.color.transparent));
+            hiddenB.setBackgroundColor(getResources().getColor(R.color.transparent));
+            hiddenC.setBackgroundColor(getResources().getColor(R.color.transparent));
+            hiddenD.setBackgroundColor(getResources().getColor(R.color.transparent));
+        }
+        else {
+            hiddenA.setBackgroundColor(getResources().getColor(R.color.hiddenButtonBackground));
+            hiddenB.setBackgroundColor(getResources().getColor(R.color.hiddenButtonBackground));
+            hiddenC.setBackgroundColor(getResources().getColor(R.color.hiddenButtonBackground));
+            hiddenD.setBackgroundColor(getResources().getColor(R.color.hiddenButtonBackground));
+        }
+        hiddenButtonsVisible = !hiddenButtonsVisible;
     }
 
     private void select(int rune) {
