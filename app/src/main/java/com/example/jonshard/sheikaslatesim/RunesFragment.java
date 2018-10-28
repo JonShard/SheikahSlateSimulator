@@ -57,7 +57,7 @@ public class RunesFragment extends Fragment {
     static final int RESULT_SAVE_IMAGE = 3;
 
     String mCurrentPhotoPath;
-    boolean[] states = {false, false, false, false, false};
+    boolean[] states = {false, false, false, false, false, false, false};
 
 
 
@@ -207,9 +207,13 @@ public class RunesFragment extends Fragment {
         btn_moto_horse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                select(MOTO_HORSE);
-
-                SoundPlayer.playSound(SoundPlayer.START);
+                if (!states[MOTO_HORSE]) {
+                    select(MOTO_HORSE);
+                    states[MOTO_HORSE] = true;
+                }
+                else  {
+                    SoundPlayer.playSound(SoundPlayer.START);                   // REPLACE WITH MOTOT HORSE SOUND.
+                }
             }
         });
     }
