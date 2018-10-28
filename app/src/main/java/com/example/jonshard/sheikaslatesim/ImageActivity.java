@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,10 @@ public class ImageActivity extends AppCompatActivity {
     Button btn_delete;
     Button btn_save;
     ImageView imageView;
+
+    Runnable runnable;
+    Handler handler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +44,36 @@ public class ImageActivity extends AppCompatActivity {
 
         imageView.setImageURI(imageUri);
 
+        SoundPlayer.playSound(SoundPlayer.CAMERA_CAPTURE);
+
+
+        handler = new Handler();
+        runnable = new Runnable() {
+
+            @Override
+            public void run() {
+
+                finish();
+            }
+        };
+
+
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                SoundPlayer.playSound(SoundPlayer.SAVE_IMAGE);
+                handler.postDelayed(runnable, 1000);
+
             }
         });
+
         btn_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 setResult(RESULT_OK);
-
-                finish();            }
+                SoundPlayer.playSound(SoundPlayer.SAVE_IMAGE);
+                handler.postDelayed(runnable,  1000);
+            }
         });
 
     }

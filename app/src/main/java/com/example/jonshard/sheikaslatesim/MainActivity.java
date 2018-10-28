@@ -25,13 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
-    }
-
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         SoundPlayer.init(getApplicationContext());
 
         handler = new Handler();
@@ -45,6 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
         };
         handler.postDelayed(runnable, 50);
+
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
 
     }

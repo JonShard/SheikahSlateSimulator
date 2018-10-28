@@ -212,7 +212,7 @@ public class RunesFragment extends Fragment {
                     states[MOTO_HORSE] = true;
                 }
                 else  {
-                    SoundPlayer.playSound(SoundPlayer.START);                   // REPLACE WITH MOTOT HORSE SOUND.
+                    SoundPlayer.playSound(SoundPlayer.MOTO_CYCLE_ZERO);                   // REPLACE WITH MOTOT HORSE SOUND.
                 }
             }
         });
