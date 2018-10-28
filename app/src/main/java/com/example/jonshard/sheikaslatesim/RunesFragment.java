@@ -45,9 +45,20 @@ public class RunesFragment extends Fragment {
     private static final int MAGNESIS =     2;
     private static final int STASIS =       3;
     private static final int CRYONIS =      4;
+    private static final int CAMERA =       5;
+    private static final int MOTO_HORSE =   6;
 
 
+
+
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_CAMERA = 1;
+    static final int REQUSET_EXTERNAL_STORAGE = 2;
+    static final int RESULT_SAVE_IMAGE = 3;
+
+    String mCurrentPhotoPath;
     boolean[] states = {false, false, false, false, false};
+
 
 
     public RunesFragment() {
@@ -80,6 +91,7 @@ public class RunesFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
         txt_title =         getView().findViewById(R.id.fragment_runes_textView_title);
         txt_subtitle =      getView().findViewById(R.id.fragment_runes_textView_subtitle);
         txt_description =   getView().findViewById(R.id.ffragment_runes_textView_description);
@@ -102,12 +114,8 @@ public class RunesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!states[BOMB_ROUND]) {
-                    txt_title.setText(R.string.rune_bomb_title);
-                    txt_subtitle.setText(R.string.rune_bomb_subtitle);
-                    txt_description.setText(R.string.rune_bomb_description);
+                    select(BOMB_ROUND);
                     SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
-                    deselectAll();
-                    btn_bomb_round.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                 }
                 else {
                     SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
@@ -121,12 +129,8 @@ public class RunesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!states[BOMB_CUBE]) {
-                    txt_title.setText(R.string.rune_bomb_title);
-                    txt_subtitle.setText(R.string.rune_bomb_subtitle);
-                    txt_description.setText(R.string.rune_bomb_description);
+                    select(BOMB_CUBE);
                     SoundPlayer.playSound(SoundPlayer.BOMB_SPAWN);
-                    deselectAll();
-                    btn_bomb_cube.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                 }
                 else {
                     SoundPlayer.playSound((SoundPlayer.BOMB_EXPLODE));
@@ -141,13 +145,8 @@ public class RunesFragment extends Fragment {
             public void onClick(View view) {
 
                 if (!states[MAGNESIS]) {
-                    deselectAll();
+                    select(MAGNESIS);
                     states[MAGNESIS] = true;
-                    btn_magnesis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                    txt_title.setText(R.string.rune_magnesis_title);
-                    txt_subtitle.setText(R.string.rune_magnesis_subtitle);
-                    txt_description.setText(R.string.rune_magnesis_description);
-
                 }
                 else {
                     states[MAGNESIS] = false;
@@ -163,13 +162,8 @@ public class RunesFragment extends Fragment {
             public void onClick(View view) {
 
                 if (!states[STASIS]) {
-                    deselectAll();
+                    select(STASIS);
                     states[STASIS] = true;
-                    btn_stasis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                    txt_title.setText(R.string.rune_stasis_title);
-                    txt_subtitle.setText(R.string.rune_stasis_subtitle);
-
-
                 }
                 else {
                     states[STASIS] = false;
@@ -184,12 +178,8 @@ public class RunesFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 if (!states[CRYONIS]) {
-                    deselectAll();
+                    select(CRYONIS);
                     states[CRYONIS] = true;
-                    btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                    txt_title.setText(R.string.rune_cryonis_title);
-                    txt_subtitle.setText(R.string.rune_cryonis_subtitle);
-
                 }
                 else {
                     states[CRYONIS] = false;
@@ -203,27 +193,72 @@ public class RunesFragment extends Fragment {
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deselectAll();
-                btn_camera.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
-                txt_title.setText(R.string.rune_camera_title);
-                txt_subtitle.setText(R.string.rune_camera_subtitle);
-                txt_description.setText(R.string.rune_camera_description);
-                SoundPlayer.playSound(SoundPlayer.START);
-                dispatchTakePictureIntent();
+                if (!states[CAMERA]) {
+                    select(CAMERA);
+                    states[CAMERA] = true;
+                }
+                else {
+                    SoundPlayer.playSound(SoundPlayer.START);                   // CHANGE SOUND??
+                    dispatchTakePictureIntent();
+                }
             }
         });
 
         btn_moto_horse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deselectAll();
+                select(MOTO_HORSE);
+
+                SoundPlayer.playSound(SoundPlayer.START);
+            }
+        });
+    }
+
+    private void select(int rune) {
+        deselectAll();
+        SoundPlayer.playSound(SoundPlayer.SELECTION_MADE);
+        switch (rune) {
+            case BOMB_ROUND:
+                btn_bomb_round.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_bomb_title);
+                txt_subtitle.setText(R.string.rune_bomb_subtitle);
+                txt_description.setText(R.string.rune_bomb_description);
+                break;
+            case BOMB_CUBE:
+                btn_bomb_cube.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_bomb_title);
+                txt_subtitle.setText(R.string.rune_bomb_subtitle);
+                txt_description.setText(R.string.rune_bomb_description);
+                break;
+            case MAGNESIS:
+                btn_magnesis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_magnesis_title);
+                txt_subtitle.setText(R.string.rune_magnesis_subtitle);
+                txt_description.setText(R.string.rune_magnesis_description);
+                break;
+            case STASIS:
+                btn_stasis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_stasis_title);
+                txt_subtitle.setText(R.string.rune_stasis_subtitle);
+                break;
+            case CRYONIS:
+                btn_cryonis.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_cryonis_title);
+                txt_subtitle.setText(R.string.rune_cryonis_subtitle);
+                break;
+            case CAMERA:
+                btn_camera.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
+                txt_title.setText(R.string.rune_camera_title);
+                txt_subtitle.setText(R.string.rune_camera_subtitle);
+                txt_description.setText(R.string.rune_camera_description);
+                break;
+            case MOTO_HORSE:
                 btn_moto_horse.setBackgroundColor(getResources().getColor(R.color.buttonSelectedBackground));
                 txt_title.setText(R.string.rune_moto_horse_title);
                 txt_subtitle.setText(R.string.rune_moto_horse_subtitle);
                 txt_description.setText(R.string.rune_moto_horse_description);
-                SoundPlayer.playSound(SoundPlayer.START);
-            }
-        });
+                break;
+        }
     }
 
     private void deselectAll() {
@@ -240,12 +275,6 @@ public class RunesFragment extends Fragment {
 
     }
 
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-    static final int REQUEST_CAMERA = 1;
-    static final int REQUSET_EXTERNAL_STORAGE = 2;
-    static final int RESULT_SAVE_IMAGE = 3;
-
-    String mCurrentPhotoPath;
 
 
     private void dispatchTakePictureIntent() {

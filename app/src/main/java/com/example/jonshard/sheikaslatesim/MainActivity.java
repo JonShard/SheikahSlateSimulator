@@ -1,12 +1,17 @@
 package com.example.jonshard.sheikaslatesim;
 
 import android.media.AudioManager;
+import android.os.Handler;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    Runnable runnable;
+    Handler handler;
 
 
     @Override
@@ -28,7 +33,22 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         SoundPlayer.init(getApplicationContext());
+
+        handler = new Handler();
+        runnable = new Runnable() {
+
+            @Override
+            public void run() {
+
+                SoundPlayer.playSound(SoundPlayer.START);
+            }
+
+        };
+        handler.postDelayed(runnable, 50);
+
+
     }
+
 
     @Override
     protected void onDestroy() {
